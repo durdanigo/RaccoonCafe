@@ -1,28 +1,270 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Guía de comandos básicos de Git para control de versiones.">
-    <meta name="keywords" content="git, comandos, github, desarrollo, programación, control de versiones">
-    <meta name="author" content="Danna Urdanigo">
-    <title>Comandos Básicos de Git - Guía Rápida</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raccoon Cafe | Salas, cafeteria de especialidad y libreria</title>
+  <meta name="description" content="Raccoon Cafe: alquiler de salas modulares, cafeteria de especialidad y libreria mixta en un solo espacio.">
+
+  <!-- Tailwind CSS por CDN: no requiere build ni Node para GitHub Pages -->
+  <script src="https://cdn.tailwindcss.com/3.4.4"></script>
+  <script>
+    // Paleta de marca de Raccoon Cafe
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            carbon: '#1F1A17',   // gris carbon del pelaje
+            moka:   '#6B4A32',   // cafe tostado
+            crema:  '#F4EBE2',   // crema de fondo
+            musgo:  '#4F6B4A',   // verde musgo
+            cobre:  '#C97B4A',   // acento calido
+          },
+          fontFamily: {
+            display: ['Georgia', 'Cambria', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
 
-    <!-- Encabezado -->
-    <header class="header">
-       
-    </header>
-</body>
+<body class="bg-crema text-carbon antialiased">
 
-    <!-- Pie de página -->
-    <footer class="footer">
-        <p><strong>Autor:</strong> Danna Urdanigo</p>
-        <p><strong>Correo:</strong> dannninita@gmail.com</p>
-        <p>Jovenes Creativos 2026</p>
-    </footer>
+  <!-- =========================================================
+       HEADER / NAVBAR
+       ========================================================= -->
+  <header class="sticky top-0 z-50 bg-carbon/95 backdrop-blur text-crema shadow-lg">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4" aria-label="Navegacion principal">
 
+      <a href="#inicio" class="flex items-center gap-2 font-display text-xl font-bold tracking-tight">
+        <span aria-hidden="true" class="text-2xl">&#9749;</span>
+        Raccoon Cafe
+      </a>
+
+      <!-- Enlaces de escritorio -->
+      <ul class="hidden items-center gap-6 text-sm font-medium md:flex">
+        <li><a href="#salas"     class="transition hover:text-cobre">Salas</a></li>
+        <li><a href="#cafeteria" class="transition hover:text-cobre">Cafeteria</a></li>
+        <li><a href="#libreria"  class="transition hover:text-cobre">Libreria</a></li>
+        <li><a href="#contacto"  class="transition hover:text-cobre">Contacto</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <!-- Indicador visual de conexion con la API -->
+        <div id="indicador-api"
+             class="flex items-center gap-2 rounded-full border border-crema/20 px-3 py-1 text-xs"
+             role="status" aria-live="polite">
+          <span id="indicador-punto" class="h-2 w-2 animate-pulse rounded-full bg-amber-400"></span>
+          <span id="indicador-texto" class="hidden sm:inline">Conectando...</span>
+        </div>
+
+        <!-- Boton del menu movil -->
+        <button id="boton-menu" type="button"
+                class="rounded p-2 md:hidden"
+                aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menu">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Menu movil desplegable -->
+    <ul id="menu-movil" class="hidden border-t border-crema/10 px-4 pb-4 text-sm md:hidden">
+      <li><a href="#salas"     class="block py-2">Salas</a></li>
+      <li><a href="#cafeteria" class="block py-2">Cafeteria</a></li>
+      <li><a href="#libreria"  class="block py-2">Libreria</a></li>
+      <li><a href="#contacto"  class="block py-2">Contacto</a></li>
+    </ul>
+  </header>
+
+  <main id="inicio">
+
+    <!-- =========================================================
+         HERO
+         ========================================================= -->
+    <section class="relative overflow-hidden bg-moka text-crema">
+      <div class="mx-auto grid max-w-6xl gap-10 px-4 py-20 md:grid-cols-2 md:items-center md:py-28">
+        <div>
+          <p class="mb-3 text-sm uppercase tracking-[0.2em] text-cobre">Cafe &middot; Salas &middot; Libros</p>
+          <h1 class="font-display text-4xl leading-tight md:text-5xl">
+            Un espacio para trabajar, reunirse y leer sin prisa
+          </h1>
+          <p class="mt-5 max-w-prose text-crema/80">
+            Seis salas modulares para coworking, reuniones, talleres y eventos tematicos,
+            acompanadas de cafeteria de especialidad y una libreria con titulos nuevos,
+            de segunda mano y de lectura en el local.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#salas"
+               class="rounded-lg bg-cobre px-6 py-3 font-medium text-carbon transition hover:bg-cobre/90">
+              Ver las salas
+            </a>
+            <a href="#contacto"
+               class="rounded-lg border border-crema/40 px-6 py-3 font-medium transition hover:bg-crema/10">
+              Escribirnos
+            </a>
+          </div>
+        </div>
+
+        <!-- Tarjeta de resumen del negocio -->
+        <div class="rounded-2xl bg-carbon/40 p-6 ring-1 ring-crema/10">
+          <h2 class="font-display text-lg">Tres lineas en un mismo lugar</h2>
+          <dl class="mt-5 space-y-4 text-sm">
+            <div class="flex gap-3">
+              <dt class="w-32 shrink-0 font-semibold text-cobre">Salas</dt>
+              <dd class="text-crema/80">2 de co-work, 2 de encuentro, 1 taller y 1 social.</dd>
+            </div>
+            <div class="flex gap-3">
+              <dt class="w-32 shrink-0 font-semibold text-cobre">Cafeteria</dt>
+              <dd class="text-crema/80">Bebidas calientes y frias, pasteleria y packs para eventos.</dd>
+            </div>
+            <div class="flex gap-3">
+              <dt class="w-32 shrink-0 font-semibold text-cobre">Libreria</dt>
+              <dd class="text-crema/80">Libros nuevos, de segunda mano y de lectura interna.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SALAS
+         ========================================================= -->
+    <section id="salas" class="mx-auto max-w-6xl px-4 py-16">
+      <header class="mb-8">
+        <h2 class="font-display text-3xl">Salas modulares</h2>
+        <p class="mt-2 max-w-prose text-carbon/70">
+          Cada sala se alquila por bloques de horas. Puedes consumir desde nuestra cafeteria
+          o traer alimentos externos pagando la tarifa de servicio de $15.00.
+        </p>
+      </header>
+
+      <!-- Las tarjetas se inyectan desde js/main.js -->
+      <div id="lista-salas" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <p class="text-sm text-carbon/60">Cargando salas...</p>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CAFETERIA
+         ========================================================= -->
+    <section id="cafeteria" class="bg-white/60 py-16">
+      <div class="mx-auto max-w-6xl px-4">
+        <header class="mb-8">
+          <h2 class="font-display text-3xl">Cafeteria de especialidad</h2>
+          <p class="mt-2 max-w-prose text-carbon/70">
+            Cafe de origen, infusiones, pasteleria de la manana y packs preconfigurados
+            para talleres y eventos.
+          </p>
+        </header>
+
+        <div id="lista-cafeteria" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <p class="text-sm text-carbon/60">Cargando menu...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         LIBRERIA
+         ========================================================= -->
+    <section id="libreria" class="mx-auto max-w-6xl px-4 py-16">
+      <header class="mb-8">
+        <h2 class="font-display text-3xl">Libreria mixta</h2>
+        <p class="mt-2 max-w-prose text-carbon/70">
+          Titulos nuevos, ejemplares de segunda mano clasificados por condicion y
+          una estanteria de lectura para disfrutar dentro del local.
+        </p>
+      </header>
+
+      <div id="lista-libreria" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <p class="text-sm text-carbon/60">Cargando catalogo...</p>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CONTACTO
+         ========================================================= -->
+    <section id="contacto" class="bg-carbon py-16 text-crema">
+      <div class="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2">
+
+        <div>
+          <h2 class="font-display text-3xl">Escribenos</h2>
+          <p class="mt-3 max-w-prose text-crema/70">
+            Cuentanos que necesitas: una sala para tu equipo, un taller, un cumpleanos
+            o simplemente una recomendacion de lectura.
+          </p>
+
+          <address class="mt-8 space-y-3 not-italic text-sm text-crema/80">
+            <p><span class="font-semibold text-cobre">Horario:</span> lunes a sabado, 08:00 a 21:00</p>
+            <p><span class="font-semibold text-cobre">Direccion:</span> Guayaquil, Ecuador</p>
+            <p><span class="font-semibold text-cobre">Correo:</span> hola@raccooncafe.com</p>
+          </address>
+        </div>
+
+        <!-- Formulario de contacto (POST /api/contact en la siguiente version) -->
+        <form id="formulario-contacto" class="space-y-4" novalidate>
+
+          <div>
+            <label for="contacto-nombre" class="mb-1 block text-sm font-medium">Nombre</label>
+            <input id="contacto-nombre" name="nombre" type="text" required minlength="3" maxlength="80"
+                   autocomplete="name"
+                   class="w-full rounded-lg border border-crema/20 bg-crema/5 px-4 py-2.5 text-crema placeholder-crema/40 focus:border-cobre focus:outline-none focus:ring-1 focus:ring-cobre"
+                   placeholder="Tu nombre completo">
+          </div>
+
+          <div>
+            <label for="contacto-email" class="mb-1 block text-sm font-medium">Correo electronico</label>
+            <input id="contacto-email" name="email" type="email" required
+                   autocomplete="email"
+                   class="w-full rounded-lg border border-crema/20 bg-crema/5 px-4 py-2.5 text-crema placeholder-crema/40 focus:border-cobre focus:outline-none focus:ring-1 focus:ring-cobre"
+                   placeholder="tucorreo@ejemplo.com">
+          </div>
+
+          <div>
+            <label for="contacto-asunto" class="mb-1 block text-sm font-medium">Asunto</label>
+            <select id="contacto-asunto" name="asunto" required
+                    class="w-full rounded-lg border border-crema/20 bg-crema/5 px-4 py-2.5 text-crema focus:border-cobre focus:outline-none focus:ring-1 focus:ring-cobre">
+              <option value="reserva"   class="text-carbon">Reservar una sala</option>
+              <option value="eventos"   class="text-carbon">Eventos y talleres</option>
+              <option value="libreria"  class="text-carbon">Libreria</option>
+              <option value="cafeteria" class="text-carbon">Cafeteria</option>
+              <option value="otro"      class="text-carbon">Otro</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="contacto-mensaje" class="mb-1 block text-sm font-medium">Mensaje</label>
+            <textarea id="contacto-mensaje" name="mensaje" rows="4" required minlength="10" maxlength="1000"
+                      class="w-full rounded-lg border border-crema/20 bg-crema/5 px-4 py-2.5 text-crema placeholder-crema/40 focus:border-cobre focus:outline-none focus:ring-1 focus:ring-cobre"
+                      placeholder="Cuentanos en que podemos ayudarte"></textarea>
+          </div>
+
+          <button type="submit"
+                  class="w-full rounded-lg bg-cobre px-6 py-3 font-medium text-carbon transition hover:bg-cobre/90">
+            Enviar mensaje
+          </button>
+
+          <p id="mensaje-formulario" class="hidden rounded-lg px-4 py-3 text-sm" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="bg-carbon text-crema/60">
+    <div class="mx-auto flex max-w-6xl flex-col gap-3 border-t border-crema/10 px-4 py-8 text-sm sm:flex-row sm:items-center sm:justify-between">
+      <p>&copy; <span id="anio"></span> Raccoon Cafe. Proyecto academico &mdash; ESPOL.</p>
+      <p>Frontend en GitHub Pages &middot; API en Render &middot; Datos en MongoDB Atlas</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript modular -->
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
