@@ -1,122 +1,53 @@
-/* Variables de Colores Pasteles */
-:root {
-    --color-fondo: #F4F6F8;
-    --color-principal: #D8E2DC;
-    --color-secundario: #B5C9C3;
-    --color-acento: #FFE5D9;
-    --color-texto: #4A5568;
-    --color-blanco: #FFFFFF;
-    --color-codigo: #2D3748;
-    --color-fondo-codigo: #E2E8F0;
+/* ===============================================================
+   styles.css - Estilos propios que complementan a Tailwind
+   ---------------------------------------------------------------
+   Tailwind cubre el 95% del diseno desde las clases utilitarias del
+   HTML. Aqui solo van los ajustes que las utilidades no expresan
+   bien: scroll suave, scrollbar, foco accesible y preferencia de
+   movimiento reducido.
+   =============================================================== */
+
+html {
+  scroll-behavior: smooth;
+  /* Compensa la altura del header fijo al saltar a una seccion. */
+  scroll-padding-top: 5rem;
 }
 
-/* Estilos Generales */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Foco visible y consistente en todos los elementos interactivos. */
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid #c97b4a; /* cobre */
+  outline-offset: 2px;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    line-height: 1.6;
+/* Barra de desplazamiento con los colores de la marca. */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-/* Encabezado */
-.header {
-    background-color: var(--color-principal);
-    text-align: center;
-    padding: 2.5rem 1rem;
-    border-bottom: 3px solid var(--color-secundario);
+::-webkit-scrollbar-track {
+  background: #f4ebe2; /* crema */
 }
 
-.header h1 {
-    font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-    color: #2F3E46;
+::-webkit-scrollbar-thumb {
+  background: #6b4a32; /* moka */
+  border-radius: 9999px;
 }
 
-.header p {
-    font-size: 1.1rem;
+::-webkit-scrollbar-thumb:hover {
+  background: #1f1a17; /* carbon */
 }
 
-/* Contenido Principal */
-.main-container {
-    flex: 1;
-    max-width: 1100px;
-    width: 100%;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
+/* Respeta la preferencia del sistema por menos animacion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-.card {
-    background-color: var(--color-blanco);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
-    border: 1px solid var(--color-secundario);
-}
-
-.card h2 {
-    margin-bottom: 1rem;
-    color: #2F3E46;
-    font-size: 1.4rem;
-}
-
-.card p {
-    margin-bottom: 0.8rem;
-}
-
-.card ul {
-    list-style-type: disc;
-    padding-left: 1.2rem;
-}
-
-.card li {
-    margin-bottom: 0.6rem;
-}
-
-/* Estilo para los bloques de código o comandos */
-code {
-    display: block;
-    background-color: var(--color-fondo-codigo);
-    color: var(--color-codigo);
-    padding: 0.5rem 0.8rem;
-    border-radius: 6px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.9rem;
-    margin: 0.5rem 0;
-    overflow-x: auto;
-}
-
-/* Pie de Página */
-.footer {
-    background-color: var(--color-principal);
-    text-align: center;
-    padding: 1.5rem;
-    font-size: 0.95rem;
-    border-top: 2px solid var(--color-secundario);
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-}
-
-/* Adaptabilidad para pantallas pequeñas (Móviles) */
-@media (max-width: 600px) {
-    .header h1 {
-        font-size: 1.8rem;
-    }
-    
-    .main-container {
-        margin: 1rem auto;
-        padding: 0 1rem;
-    }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
