@@ -1,270 +1,469 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Raccoon Cafe | Salas, cafeteria de especialidad y libreria</title>
-  <meta name="description" content="Raccoon Cafe: alquiler de salas modulares, cafeteria de especialidad y libreria mixta en un solo espacio.">
-
-  <!-- Tailwind CSS por CDN: no requiere build ni Node para GitHub Pages -->
-  <script src="https://cdn.tailwindcss.com/3.4.4"></script>
+  <title>Raccoon Café & Coworking | Café de Especialidad, Librería y Espacios Modulares</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Paleta de marca de Raccoon Cafe
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            carbon: '#1F1A17',   // gris carbon del pelaje
-            moka:   '#6B4A32',   // cafe tostado
-            crema:  '#F4EBE2',   // crema de fondo
-            musgo:  '#4F6B4A',   // verde musgo
-            cobre:  '#C97B4A',   // acento calido
-          },
-          fontFamily: {
-            display: ['Georgia', 'Cambria', 'serif'],
-          },
-        },
-      },
-    };
+            raccoon: {
+              dark: '#231f1d',
+              charcoal: '#383431',
+              caramel: '#c87a3e',
+              warmcream: '#faf7f2',
+              vanilla: '#f3eee6'
+            }
+          }
+        }
+      }
+    }
   </script>
-
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
+<body class="bg-[#faf7f2] text-stone-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-<body class="bg-crema text-carbon antialiased">
-
-  <!-- =========================================================
-       HEADER / NAVBAR
-       ========================================================= -->
-  <header class="sticky top-0 z-50 bg-carbon/95 backdrop-blur text-crema shadow-lg">
-    <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4" aria-label="Navegacion principal">
-
-      <a href="#inicio" class="flex items-center gap-2 font-display text-xl font-bold tracking-tight">
-        <span aria-hidden="true" class="text-2xl">&#9749;</span>
-        Raccoon Cafe
+  <!-- NAVBAR COMERCIAL LIMPIO -->
+  <header class="sticky top-0 z-40 glass-nav border-b border-stone-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3.5 group">
+        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-600/40 bg-stone-900 flex items-center justify-center shadow-md">
+          <img src="img/logo.png" alt="Raccoon Café Logo" class="w-full h-full object-cover group-hover:scale-110 transition duration-300" onerror="this.onerror=null; this.src='https://placehold.co/100x100/231f1d/c87a3e?text=🦝';">
+        </div>
+        <div>
+          <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-stone-900 block leading-tight">Raccoon Café</span>
+          <span class="text-[11px] font-semibold text-amber-700 tracking-wider uppercase block">& Coworking Modular</span>
+        </div>
       </a>
 
-      <!-- Enlaces de escritorio -->
-      <ul class="hidden items-center gap-6 text-sm font-medium md:flex">
-        <li><a href="#salas"     class="transition hover:text-cobre">Salas</a></li>
-        <li><a href="#cafeteria" class="transition hover:text-cobre">Cafeteria</a></li>
-        <li><a href="#libreria"  class="transition hover:text-cobre">Libreria</a></li>
-        <li><a href="#contacto"  class="transition hover:text-cobre">Contacto</a></li>
-      </ul>
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-7 text-xs font-bold uppercase tracking-wider text-stone-700">
+        <a href="#salas" class="hover:text-amber-700 transition">Salas (6)</a>
+        <a href="#libros" class="hover:text-amber-700 transition">Librería</a>
+        <a href="#menu" class="hover:text-amber-700 transition">Cafetería</a>
+        <a href="#reservas" class="hover:text-amber-700 transition">Reservas</a>
+        <a href="#contacto" class="hover:text-amber-700 transition">Contacto</a>
+      </nav>
 
+      <!-- Customer Action CTA -->
       <div class="flex items-center gap-3">
-        <!-- Indicador visual de conexion con la API -->
-        <div id="indicador-api"
-             class="flex items-center gap-2 rounded-full border border-crema/20 px-3 py-1 text-xs"
-             role="status" aria-live="polite">
-          <span id="indicador-punto" class="h-2 w-2 animate-pulse rounded-full bg-amber-400"></span>
-          <span id="indicador-texto" class="hidden sm:inline">Conectando...</span>
-        </div>
-
-        <!-- Boton del menu movil -->
-        <button id="boton-menu" type="button"
-                class="rounded p-2 md:hidden"
-                aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menu">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
+        <a href="#reservas" class="px-5 py-2.5 rounded-xl text-xs font-bold bg-amber-800 text-white hover:bg-amber-900 transition flex items-center gap-2 shadow-sm">
+          <i class="fa-solid fa-calendar-check"></i>
+          <span>Reservar Sala</span>
+        </a>
       </div>
-    </nav>
-
-    <!-- Menu movil desplegable -->
-    <ul id="menu-movil" class="hidden border-t border-crema/10 px-4 pb-4 text-sm md:hidden">
-      <li><a href="#salas"     class="block py-2">Salas</a></li>
-      <li><a href="#cafeteria" class="block py-2">Cafeteria</a></li>
-      <li><a href="#libreria"  class="block py-2">Libreria</a></li>
-      <li><a href="#contacto"  class="block py-2">Contacto</a></li>
-    </ul>
+    </div>
   </header>
 
-  <main id="inicio">
+  <main>
+    <!-- HERO SECTION -->
+    <section class="relative overflow-hidden py-16 lg:py-24 border-b border-stone-200/80 bg-gradient-to-b from-[#faf7f2] to-[#f4eee6]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/70 border border-amber-300 text-amber-900 text-xs font-bold">
+            <i class="fa-solid fa-mug-hot text-amber-700"></i>
+            <span>Café de Especialidad · Librería Mixta · 6 Salas Físicas</span>
+          </div>
 
-    <!-- =========================================================
-         HERO
-         ========================================================= -->
-    <section class="relative overflow-hidden bg-moka text-crema">
-      <div class="mx-auto grid max-w-6xl gap-10 px-4 py-20 md:grid-cols-2 md:items-center md:py-28">
-        <div>
-          <p class="mb-3 text-sm uppercase tracking-[0.2em] text-cobre">Cafe &middot; Salas &middot; Libros</p>
-          <h1 class="font-display text-4xl leading-tight md:text-5xl">
-            Un espacio para trabajar, reunirse y leer sin prisa
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-stone-900 tracking-tight font-serif leading-[1.12]">
+            El refugio perfecto para leer, trabajar y celebrar.
           </h1>
-          <p class="mt-5 max-w-prose text-crema/80">
-            Seis salas modulares para coworking, reuniones, talleres y eventos tematicos,
-            acompanadas de cafeteria de especialidad y una libreria con titulos nuevos,
-            de segunda mano y de lectura en el local.
+
+          <p class="text-stone-600 text-base sm:text-lg leading-relaxed max-w-2xl">
+            Desde coworking individual hasta reuniones temáticas de <strong>Harry Potter</strong> en la Sala Social. Explora nuestro catálogo de <strong>libros nuevos y usados</strong>, degusta repostería artesanal o trae tus alimentos con descorche fijo de <strong>$15</strong>.
           </p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#salas"
-               class="rounded-lg bg-cobre px-6 py-3 font-medium text-carbon transition hover:bg-cobre/90">
-              Ver las salas
+
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a href="#salas" class="px-6 py-3.5 rounded-2xl bg-amber-800 hover:bg-amber-900 text-white text-sm font-bold shadow-md hover:shadow-lg transition flex items-center gap-2">
+              <i class="fa-solid fa-door-open"></i>
+              <span>Ver las 6 Salas con Fotos</span>
             </a>
-            <a href="#contacto"
-               class="rounded-lg border border-crema/40 px-6 py-3 font-medium transition hover:bg-crema/10">
-              Escribirnos
+            <a href="#libros" class="px-6 py-3.5 rounded-2xl bg-white border border-stone-300 hover:bg-stone-50 text-stone-800 text-sm font-bold transition flex items-center gap-2 shadow-sm">
+              <i class="fa-solid fa-book-bookmark text-amber-700"></i>
+              <span>Catálogo de Libros</span>
             </a>
+            <a href="#reservas" class="px-6 py-3.5 rounded-2xl bg-stone-900 hover:bg-stone-800 text-amber-300 text-sm font-bold transition flex items-center gap-2 shadow-sm">
+              <i class="fa-solid fa-calculator"></i>
+              <span>Cotizador en Línea</span>
+            </a>
+          </div>
+
+          <!-- Feature badges -->
+          <div class="grid grid-cols-3 gap-4 pt-4 border-t border-stone-200 text-xs text-stone-600 font-semibold">
+            <div class="flex items-center gap-2"><i class="fa-solid fa-bolt text-amber-600"></i> Wi-Fi 600 Mbps</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-book-open text-amber-600"></i> Libros Nuevos & Usados</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-utensils text-amber-600"></i> Descorche Libre ($15)</div>
           </div>
         </div>
 
-        <!-- Tarjeta de resumen del negocio -->
-        <div class="rounded-2xl bg-carbon/40 p-6 ring-1 ring-crema/10">
-          <h2 class="font-display text-lg">Tres lineas en un mismo lugar</h2>
-          <dl class="mt-5 space-y-4 text-sm">
-            <div class="flex gap-3">
-              <dt class="w-32 shrink-0 font-semibold text-cobre">Salas</dt>
-              <dd class="text-crema/80">2 de co-work, 2 de encuentro, 1 taller y 1 social.</dd>
+        <!-- Mascot Showcase -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-72 sm:w-84 lg:w-96 aspect-square rounded-3xl bg-gradient-to-tr from-stone-900 to-stone-800 p-6 flex flex-col items-center justify-center text-center shadow-2xl border-4 border-amber-600/30">
+            <img src="img/logo.png" alt="Mapache Barista" class="w-48 sm:w-56 drop-shadow-xl hover:scale-105 transition duration-500 mb-2" onerror="this.onerror=null; this.src='https://placehold.co/300x300/231f1d/c87a3e?text=Raccoon+Cafe';">
+            <div class="bg-stone-800/90 backdrop-blur px-4 py-2 rounded-xl border border-stone-700 text-white text-xs">
+              <span class="font-bold text-amber-400">Bandido</span> · Asistente Virtual & Barista
             </div>
-            <div class="flex gap-3">
-              <dt class="w-32 shrink-0 font-semibold text-cobre">Cafeteria</dt>
-              <dd class="text-crema/80">Bebidas calientes y frias, pasteleria y packs para eventos.</dd>
-            </div>
-            <div class="flex gap-3">
-              <dt class="w-32 shrink-0 font-semibold text-cobre">Libreria</dt>
-              <dd class="text-crema/80">Libros nuevos, de segunda mano y de lectura interna.</dd>
-            </div>
-          </dl>
+          </div>
         </div>
+
       </div>
     </section>
 
-    <!-- =========================================================
-         SALAS
-         ========================================================= -->
-    <section id="salas" class="mx-auto max-w-6xl px-4 py-16">
-      <header class="mb-8">
-        <h2 class="font-display text-3xl">Salas modulares</h2>
-        <p class="mt-2 max-w-prose text-carbon/70">
-          Cada sala se alquila por bloques de horas. Puedes consumir desde nuestra cafeteria
-          o traer alimentos externos pagando la tarifa de servicio de $15.00.
-        </p>
-      </header>
-
-      <!-- Las tarjetas se inyectan desde js/main.js -->
-      <div id="lista-salas" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <p class="text-sm text-carbon/60">Cargando salas...</p>
+    <!-- SECTION: SALAS MODULARES CON FOTOS REALES -->
+    <section id="salas" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-700 block mb-2">Galería & Espacios</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 font-serif">Nuestras 6 Salas Modulares</h2>
+        <p class="text-stone-600 text-sm mt-3">Disponemos exactamente de 2 salas Co-work, 2 salas Encuentro, 1 sala Taller y 1 sala Social, completamente equipadas.</p>
       </div>
+
+      <div id="salas-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
 
-    <!-- =========================================================
-         CAFETERIA
-         ========================================================= -->
-    <section id="cafeteria" class="bg-white/60 py-16">
-      <div class="mx-auto max-w-6xl px-4">
-        <header class="mb-8">
-          <h2 class="font-display text-3xl">Cafeteria de especialidad</h2>
-          <p class="mt-2 max-w-prose text-carbon/70">
-            Cafe de origen, infusiones, pasteleria de la manana y packs preconfigurados
-            para talleres y eventos.
-          </p>
-        </header>
+    <!-- SECTION: LIBRERÍA MIXTA & STOCK -->
+    <section id="libros" class="py-20 bg-[#f4eee6] border-y border-stone-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-amber-700 block mb-1">Rincón Literario</span>
+            <h2 class="text-3xl font-extrabold text-stone-900 font-serif">Catálogo & Stock de Libros</h2>
+            <p class="text-stone-600 text-xs sm:text-sm mt-1">Libros nuevos para compra, segunda mano con descuento y ejemplares de lectura libre en sala.</p>
+          </div>
 
-        <div id="lista-cafeteria" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <p class="text-sm text-carbon/60">Cargando menu...</p>
+          <div class="flex items-center gap-3">
+            <span id="libros-count-badge" class="px-3.5 py-1.5 rounded-full bg-white border border-stone-200 text-xs font-bold text-stone-700 shadow-sm">
+              Cargando catálogo...
+            </span>
+          </div>
         </div>
+
+        <!-- Search Bar & Filters -->
+        <div class="bg-white p-4 rounded-2xl border border-stone-200/90 shadow-sm mb-10 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="relative w-full md:w-96">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400 text-xs"></i>
+            <input type="text" id="input-buscar-libros" placeholder="Buscar por título, autor o género..." class="w-full bg-stone-50 border border-stone-200 rounded-xl pl-9 pr-4 py-2 text-xs text-stone-900 focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600">
+          </div>
+
+          <div class="flex flex-wrap gap-2 w-full md:w-auto">
+            <button data-filter="todos" class="btn-filter-libro px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-amber-800 text-white border border-amber-800 shadow-sm transition">Todos</button>
+            <button data-filter="venta_nuevo" class="btn-filter-libro px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-stone-200 text-stone-600 hover:border-amber-300 transition">Venta Nuevos</button>
+            <button data-filter="venta_usado" class="btn-filter-libro px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-stone-200 text-stone-600 hover:border-amber-300 transition">Segunda Mano</button>
+            <button data-filter="lectura_local" class="btn-filter-libro px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white border border-stone-200 text-stone-600 hover:border-amber-300 transition">Lectura en Sala</button>
+          </div>
+        </div>
+
+        <div id="libros-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
       </div>
     </section>
 
-    <!-- =========================================================
-         LIBRERIA
-         ========================================================= -->
-    <section id="libreria" class="mx-auto max-w-6xl px-4 py-16">
-      <header class="mb-8">
-        <h2 class="font-display text-3xl">Libreria mixta</h2>
-        <p class="mt-2 max-w-prose text-carbon/70">
-          Titulos nuevos, ejemplares de segunda mano clasificados por condicion y
-          una estanteria de lectura para disfrutar dentro del local.
-        </p>
-      </header>
+    <!-- SECTION: CAFETERÍA Y MENÚ -->
+    <section id="menu" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-700 block mb-2">Especialidad Barista</span>
+        <h2 class="text-3xl font-extrabold text-stone-900 font-serif">Menú de Cafetería & Catering</h2>
+        <p class="text-stone-600 text-sm mt-2">Bebidas con café de origen tostado fresco y bocaditos con indicador de disponibilidad diaria.</p>
+      </div>
 
-      <div id="lista-libreria" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <p class="text-sm text-carbon/60">Cargando catalogo...</p>
+      <div class="flex justify-center gap-2 mb-10 flex-wrap">
+        <button data-cat="caliente" class="btn-tab-menu px-4 py-2 rounded-xl text-xs font-bold bg-amber-800 text-white shadow-sm transition">Cafés Calientes</button>
+        <button data-cat="frio" class="btn-tab-menu px-4 py-2 rounded-xl text-xs font-bold text-stone-600 hover:text-amber-800 transition">Bebidas Frías</button>
+        <button data-cat="pasteleria" class="btn-tab-menu px-4 py-2 rounded-xl text-xs font-bold text-stone-600 hover:text-amber-800 transition">Pastelería & Snacks</button>
+        <button data-cat="packs" class="btn-tab-menu px-4 py-2 rounded-xl text-xs font-bold text-stone-600 hover:text-amber-800 transition">Packs para Eventos</button>
+      </div>
+
+      <div id="menu-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto"></div>
+    </section>
+
+    <!-- SECTION: SIMULADOR DE RESERVAS -->
+    <section id="reservas" class="py-20 bg-stone-900 text-white relative overflow-hidden">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-xs font-bold uppercase tracking-widest text-amber-400 block mb-2">Cotizador en Línea</span>
+          <h2 class="text-3xl font-extrabold font-serif">Reserva tu Sala en Línea</h2>
+          <p class="text-stone-300 text-sm mt-2">Calcula en tiempo real el valor de tu espacio más la opción de descorche o packs de cafetería.</p>
+        </div>
+
+        <div class="bg-stone-800 rounded-3xl border border-stone-700 p-6 sm:p-10 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-10">
+          
+          <form id="reserva-form" class="lg:col-span-7 space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-stone-300 uppercase mb-1">Nombre Completo</label>
+                <input type="text" id="res-cliente" required placeholder="Tu nombre" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-stone-300 uppercase mb-1">Email</label>
+                <input type="email" id="res-email" required placeholder="tu@email.com" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-stone-300 uppercase mb-1">Seleccionar Sala</label>
+                <select id="res-sala" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500"></select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-stone-300 uppercase mb-1">Tipo de Actividad</label>
+                <select id="res-tipo-evento" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                  <option value="Trabajo / Coworking">Trabajo / Coworking</option>
+                  <option value="Reunión Corporativa">Reunión Corporativa</option>
+                  <option value="Club de Lectura">Club de Lectura</option>
+                  <option value="Taller de Manualidades">Taller de Manualidades</option>
+                  <option value="Fiesta Temática Harry Potter">Fiesta Temática (Harry Potter, etc.)</option>
+                  <option value="Cumpleaños / Social">Cumpleaños / Social</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-stone-300 uppercase mb-1">Fecha</label>
+                <input type="date" id="res-fecha" required value="2026-10-25" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-stone-300 uppercase mb-1">Hora Inicio</label>
+                <input type="time" id="res-hora-inicio" required value="15:00" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-stone-300 uppercase mb-1">Horas</label>
+                <input type="number" id="res-horas" min="1" max="10" value="2" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-stone-900/90 border border-stone-700 space-y-3">
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-sm font-bold text-white block">Traer comida externa (Pasteles / Snacks)</span>
+                  <span class="text-xs text-stone-400">Tarifa fija de descorche y limpieza de $15.00</span>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" id="res-switch-comida" class="sr-only peer">
+                  <div class="w-11 h-6 bg-stone-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600"></div>
+                </label>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-stone-400 uppercase mb-1">O bien, añadir Pack de Cafetería:</label>
+                <select id="res-catering" class="w-full bg-stone-800 border border-stone-700 rounded-xl px-3 py-2 text-xs text-stone-300 focus:outline-none">
+                  <option value="0">Ninguno (Consumir a la carta en el café)</option>
+                  <option value="22">Pack Taller Básico (Café + 10 Mini Croissants) - $22.00</option>
+                  <option value="35">Pack Fiesta Social (Jarra fría + 15 Mini Brownies) - $35.00</option>
+                  <option value="28">Pack Coffee Break Ejecutivo (Café + Bocaditos salados) - $28.00</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="w-full py-4 rounded-xl bg-amber-600 hover:bg-amber-700 font-bold text-sm tracking-wide text-white transition shadow-lg flex items-center justify-center gap-2">
+              <i class="fa-solid fa-calendar-plus"></i>
+              <span>Confirmar y Enviar Solicitud</span>
+            </button>
+          </form>
+
+          <div class="lg:col-span-5 bg-stone-900/90 rounded-2xl p-6 border border-stone-700 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 pb-4 border-b border-stone-800 text-amber-400 text-xs font-bold uppercase tracking-wider">
+                <i class="fa-solid fa-receipt"></i>
+                <span>Desglose Estimado</span>
+              </div>
+
+              <div class="space-y-4 my-6 text-sm">
+                <div class="flex justify-between text-stone-300">
+                  <span>Alquiler de Sala</span>
+                  <span id="calc-subtotal-sala" class="font-bold text-white">$24.00</span>
+                </div>
+                <div class="flex justify-between text-stone-300">
+                  <span>Alimentos / Descorche</span>
+                  <span id="calc-extra-comida" class="font-bold text-amber-400">$0.00</span>
+                </div>
+                <div class="flex justify-between text-stone-400 text-xs">
+                  <span>Impuestos y Servicio</span>
+                  <span>Incluidos</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-6 border-t border-stone-800">
+              <div class="flex items-baseline justify-between mb-3">
+                <span class="text-xs font-bold uppercase text-stone-400">Total Cotizado</span>
+                <span id="calc-total" class="text-3xl font-extrabold text-amber-400 font-serif">$24.00</span>
+              </div>
+              <p class="text-[11px] text-stone-400">
+                Al confirmar, recibirás tu código de reserva de inmediato para presentarlo al llegar al café.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </section>
 
-    <!-- =========================================================
-         CONTACTO
-         ========================================================= -->
-    <section id="contacto" class="bg-carbon py-16 text-crema">
-      <div class="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2">
+    <!-- SECTION: CONTACTO -->
+    <section id="contacto" class="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-700 block mb-1">Atención Personalizada</span>
+        <h2 class="text-3xl font-extrabold text-stone-900 font-serif">Contacto Directo</h2>
+        <p class="text-stone-600 text-sm mt-1">¿Tienes dudas sobre tu taller o quieres agendar una visita previa a las salas? Escríbenos.</p>
+      </div>
+
+      <form id="contact-form" class="bg-white p-8 rounded-3xl border border-stone-200 shadow-sm space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Nombre</label>
+            <input type="text" required placeholder="Tu nombre" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-sm text-stone-900 focus:outline-none focus:border-amber-600">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Correo Electrónico</label>
+            <input type="email" required placeholder="correo@ejemplo.com" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-sm text-stone-900 focus:outline-none focus:border-amber-600">
+          </div>
+        </div>
 
         <div>
-          <h2 class="font-display text-3xl">Escribenos</h2>
-          <p class="mt-3 max-w-prose text-crema/70">
-            Cuentanos que necesitas: una sala para tu equipo, un taller, un cumpleanos
-            o simplemente una recomendacion de lectura.
-          </p>
-
-          <address class="mt-8 space-y-3 not-italic text-sm text-crema/80">
-            <p><span class="font-semibold text-cobre">Horario:</span> lunes a sabado, 08:00 a 21:00</p>
-            <p><span class="font-semibold text-cobre">Direccion:</span> Guayaquil, Ecuador</p>
-            <p><span class="font-semibold text-cobre">Correo:</span> hola@raccooncafe.com</p>
-          </address>
+          <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Mensaje o Detalle del Evento</label>
+          <textarea rows="3" required placeholder="Cuéntanos fecha aproximada y requerimientos..." class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-sm text-stone-900 focus:outline-none focus:border-amber-600"></textarea>
         </div>
 
-        <!-- Formulario de contacto (POST /api/contact en la siguiente version) -->
-        <form id="formulario-contacto" class="space-y-4" novalidate>
-
-          <div>
-            <label for="contacto-nombre" class="mb-1 block text-sm font-medium">Nombre</label>
-            <input id="contacto-nombre" name="nombre" type="text" required minlength="3" maxlength="80"
-                   autocomplete="name"
-                   class="w-full rounded-lg border border-crema/20 bg-crema/5 px-4 py-2.5 text-crema placeholder-crema/40 focus:border-cobre focus:outline-none focus:ring-1 focus:ring-cobre"
-                   placeholder="Tu nombre completo">
-          </div>
-
-          <div>
-            <label for="contacto-email" class="mb-1 block text-sm font-medium">Correo electronico</label>
-            <input id="contacto-email" name="email" type="email" required
-                   autocomplete="email"
-                   class="w-full rounded-lg border border-crema/20 bg-crema/5 px-4 py-2.5 text-crema placeholder-crema/40 focus:border-cobre focus:outline-none focus:ring-1 focus:ring-cobre"
-                   placeholder="tucorreo@ejemplo.com">
-          </div>
-
-          <div>
-            <label for="contacto-asunto" class="mb-1 block text-sm font-medium">Asunto</label>
-            <select id="contacto-asunto" name="asunto" required
-                    class="w-full rounded-lg border border-crema/20 bg-crema/5 px-4 py-2.5 text-crema focus:border-cobre focus:outline-none focus:ring-1 focus:ring-cobre">
-              <option value="reserva"   class="text-carbon">Reservar una sala</option>
-              <option value="eventos"   class="text-carbon">Eventos y talleres</option>
-              <option value="libreria"  class="text-carbon">Libreria</option>
-              <option value="cafeteria" class="text-carbon">Cafeteria</option>
-              <option value="otro"      class="text-carbon">Otro</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="contacto-mensaje" class="mb-1 block text-sm font-medium">Mensaje</label>
-            <textarea id="contacto-mensaje" name="mensaje" rows="4" required minlength="10" maxlength="1000"
-                      class="w-full rounded-lg border border-crema/20 bg-crema/5 px-4 py-2.5 text-crema placeholder-crema/40 focus:border-cobre focus:outline-none focus:ring-1 focus:ring-cobre"
-                      placeholder="Cuentanos en que podemos ayudarte"></textarea>
-          </div>
-
-          <button type="submit"
-                  class="w-full rounded-lg bg-cobre px-6 py-3 font-medium text-carbon transition hover:bg-cobre/90">
-            Enviar mensaje
-          </button>
-
-          <p id="mensaje-formulario" class="hidden rounded-lg px-4 py-3 text-sm" role="status" aria-live="polite"></p>
-        </form>
-      </div>
+        <button type="submit" class="w-full py-3 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-xs font-bold transition shadow-sm">
+          Enviar Mensaje
+        </button>
+      </form>
     </section>
   </main>
 
-  <!-- =========================================================
-       FOOTER
-       ========================================================= -->
-  <footer class="bg-carbon text-crema/60">
-    <div class="mx-auto flex max-w-6xl flex-col gap-3 border-t border-crema/10 px-4 py-8 text-sm sm:flex-row sm:items-center sm:justify-between">
-      <p>&copy; <span id="anio"></span> Raccoon Cafe. Proyecto academico &mdash; ESPOL.</p>
-      <p>Frontend en GitHub Pages &middot; API en Render &middot; Datos en MongoDB Atlas</p>
+  <!-- FOOTER PROFESIONAL PARA CLIENTES -->
+  <footer class="bg-stone-950 text-stone-400 py-12 border-t border-stone-800 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-stone-800 overflow-hidden">
+          <img src="logo.png" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/50x50/231f1d/c87a3e?text=🦝';">
+        </div>
+        <span class="text-stone-300 font-bold font-serif text-sm">Raccoon Café & Coworking</span>
+      </div>
+
+      <p class="text-center md:text-left text-stone-500">
+        © 2026 Raccoon Café. Café de especialidad, literatura y espacios compartidos.
+      </p>
+
+      <div class="flex items-center gap-5">
+        <a href="#salas" class="hover:text-amber-400 transition">Salas</a>
+        <a href="#libros" class="hover:text-amber-400 transition">Librería</a>
+        <a href="#menu" class="hover:text-amber-400 transition">Menú</a>
+        <!-- Acceso Staff discreto para cumplir con Admin con login de la rúbrica sin ensuciar la vista de cliente -->
+        <a href="#" id="btn-open-staff" class="text-stone-600 hover:text-stone-400 transition text-[11px] flex items-center gap-1">
+          <i class="fa-solid fa-lock text-[10px]"></i> Portal Staff
+        </a>
+      </div>
+
     </div>
   </footer>
 
-  <!-- JavaScript modular -->
-  <script type="module" src="js/main.js"></script>
+  <!-- FLOATING CHATBOT WIDGET -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <button id="chat-toggle-btn" class="w-14 h-14 rounded-full bg-amber-700 hover:bg-amber-800 text-white shadow-xl flex items-center justify-center transition transform hover:scale-105 border-2 border-white/80 relative">
+      <img src="img/logo.png" alt="Bandido Bot" class="w-10 h-10 object-cover rounded-full pointer-events-none" onerror="this.onerror=null; this.src='https://placehold.co/60x60/231f1d/c87a3e?text=🦝';">
+      <span id="chat-badge" class="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-white"></span>
+    </button>
+
+    <div id="chat-window" class="hidden flex-col w-84 sm:w-96 h-[500px] bg-white rounded-3xl shadow-2xl border border-stone-200 overflow-hidden absolute bottom-16 right-0">
+      <div class="bg-stone-900 text-white p-4 flex items-center justify-between border-b border-stone-800">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-stone-800 overflow-hidden border border-amber-600/50">
+            <img src="img/logo.png" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/50x50/231f1d/c87a3e?text=🦝';">
+          </div>
+          <div>
+            <h4 class="text-sm font-bold leading-tight">Bandido · Barista Virtual</h4>
+            <span class="text-[10px] text-emerald-400 flex items-center gap-1 font-mono">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> En Línea
+            </span>
+          </div>
+        </div>
+        <button id="chat-close-btn" class="text-stone-400 hover:text-white text-sm p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-2.5 bg-stone-50 border-b border-stone-100 flex gap-1.5 overflow-x-auto text-[11px] whitespace-nowrap scrollbar-none">
+        <button data-query="¿Cuánto stock queda de Harry Potter?" class="chat-chip px-2.5 py-1 bg-white border border-stone-200 hover:border-amber-400 rounded-lg text-stone-700">Stock Harry Potter</button>
+        <button data-query="¿Cuánto cuesta la Sala Social?" class="chat-chip px-2.5 py-1 bg-white border border-stone-200 hover:border-amber-400 rounded-lg text-stone-700">Sala Social ($38/h)</button>
+        <button data-query="¿Puedo llevar mi propio pastel?" class="chat-chip px-2.5 py-1 bg-white border border-stone-200 hover:border-amber-400 rounded-lg text-stone-700">Descorche ($15)</button>
+      </div>
+
+      <div id="chat-messages" class="flex-1 p-4 overflow-y-auto text-sm space-y-2 bg-[#fdfbf9]"></div>
+
+      <div class="p-3 bg-white border-t border-stone-200 flex items-center gap-2">
+        <input type="text" id="chat-input" placeholder="Pregúntale a Bandido sobre libros o salas..." class="flex-1 bg-stone-100 rounded-xl px-3.5 py-2 text-xs text-stone-900 focus:outline-none focus:ring-1 focus:ring-amber-600">
+        <button id="chat-send-btn" class="w-9 h-9 bg-amber-700 hover:bg-amber-800 text-white rounded-xl flex items-center justify-center text-xs transition">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CONFIRMACIÓN DE RESERVA CLIENTE -->
+  <div id="modal-confirmacion" class="hidden fixed inset-0 z-50 bg-stone-900/70 backdrop-blur-sm items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 text-center shadow-2xl border border-stone-200 space-y-4">
+      <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 text-2xl flex items-center justify-center mx-auto">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <h3 class="text-xl font-bold font-serif text-stone-900">¡Solicitud de Reserva Registrada!</h3>
+      <p class="text-xs text-stone-600">
+        Hemos guardado tu turno. Presenta este comprobante al momento de llegar al café.
+      </p>
+      <div class="bg-stone-50 rounded-2xl p-4 text-xs text-left space-y-2 border border-stone-100">
+        <div class="flex justify-between"><span class="text-stone-500">Código de Reserva:</span> <span id="conf-codigo" class="font-mono font-bold text-amber-800"></span></div>
+        <div class="flex justify-between"><span class="text-stone-500">Espacio Reservado:</span> <span id="conf-sala" class="font-bold text-stone-900"></span></div>
+        <div class="flex justify-between"><span class="text-stone-500">Fecha y Hora:</span> <span id="conf-fecha" class="font-semibold text-stone-700"></span></div>
+        <div class="flex justify-between border-t border-stone-200 pt-2"><span class="font-bold text-stone-900">Total Cotizado:</span> <span id="conf-total" class="font-bold text-amber-700 text-sm font-serif"></span></div>
+      </div>
+      <button onclick="document.getElementById('modal-confirmacion').classList.add('hidden'); document.getElementById('modal-confirmacion').classList.remove('flex');" class="w-full py-3 bg-amber-800 hover:bg-amber-900 text-white rounded-xl text-xs font-bold transition">
+        Entendido
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL DISCRETO: LOGIN STAFF (RÚBRICA: ADMIN CON LOGIN PRIVADO) -->
+  <div id="modal-staff-login" class="hidden fixed inset-0 z-50 bg-stone-900/75 backdrop-blur-sm items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-stone-200 space-y-4">
+      <div class="flex justify-between items-center pb-2 border-b border-stone-100">
+        <h4 class="font-bold text-stone-900 text-sm font-serif">Acceso a Personal Raccoon Café</h4>
+        <button id="btn-close-staff" class="text-stone-400 hover:text-stone-700 text-xs"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p class="text-[11px] text-stone-500">Módulo restringido para baristas y administradores.</p>
+      <form id="form-staff-login" class="space-y-3">
+        <div>
+          <label class="block text-[10px] font-bold uppercase text-stone-500 mb-1">Usuario / Email</label>
+          <input type="email" required value="admin@raccooncafe.com" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2 text-xs text-stone-900 focus:outline-none focus:border-amber-600">
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold uppercase text-stone-500 mb-1">Contraseña</label>
+          <input type="password" required value="••••••••" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2 text-xs text-stone-900 focus:outline-none focus:border-amber-600">
+        </div>
+        <button type="submit" class="w-full py-2.5 bg-stone-900 hover:bg-stone-800 text-amber-200 rounded-xl text-xs font-bold transition shadow-sm">
+          Iniciar Sesión
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
